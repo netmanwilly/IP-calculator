@@ -156,14 +156,15 @@ def final_print(ip: str):
     network_address_result = ".".join(network_address)
     first_usable_result = ".".join(first_usable_address)
     last_usable_result = ".".join(last_usable_address)
-    broadcast_address = ".".join(last_usable_address)
+    broadcast_result = ".".join(broadcast_address)
 
     with open("Result", "a") as result:
+
         result.write("Results: \n")
         result.write(f"Network Address: {network_address_result} {cidr} \n")
         result.write(f"First Usable Address: {first_usable_result} \n")
         result.write(f"Last Usable Address: {last_usable_result} \n")
-        result.write(f"Broadcast Address: {broadcast_address} \n")
+        result.write(f"Broadcast Address: {broadcast_result} \n")
         result.write(f"\n")
     
     print("Results store in file.")
@@ -186,7 +187,7 @@ def to_binary(number: int):
         i += 1
     if len(conversion) < 8:
         conversion += "0" * (8 - len(conversion))
-        
+
     
     return conversion
 
