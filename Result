@@ -1,0 +1,48 @@
+Results: 
+Network Address: 192.160.0.0 ['/12'] 
+First Usable Address: 192.160.0.1 
+Last Usable Address: 192.175.255.254 
+Broadcast Address: 192.175.255.254 
+
+Results: 
+Network Address: 192.168.0.0 ['/16'] 
+First Usable Address: 192.168.0.1 
+Last Usable Address: 192.168.255.254 
+Broadcast Address: 192.168.255.254 
+
+Results: 
+Network Address: 192.168.0.0 ['/20'] 
+First Usable Address: 192.168.0.1 
+Last Usable Address: 192.168.15.254 
+Broadcast Address: 192.168.15.254 
+
+Results: 
+Network Address: 192.168.1.64 ['/26'] 
+First Usable Address: 192.168.1.65 
+Last Usable Address: 192.168.1.126 
+Broadcast Address: 192.168.1.126 
+
+Results: 
+Network Address: 192.168.0.0 ['/17'] 
+First Usable Address: 192.168.0.1 
+Last Usable Address: 192.168.127.254 
+Broadcast Address: 192.168.127.254 
+
+Results: 
+Network Address: 192.0.0.0 ['/8'] 
+First Usable Address: 192.0.0.1 
+Last Usable Address: 192.255.255.254 
+Broadcast Address: 192.255.255.254 
+
+Results: 
+Network Address: 181.137.160.0 ['/19'] 
+First Usable Address: 181.137.160.1 
+Last Usable Address: 181.137.191.254 
+Broadcast Address: 181.137.191.254 
+
+Results: 
+Network Address: 181.137.160.0 ['/19'] 
+First Usable Address: 181.137.160.1 
+Last Usable Address: 181.137.191.254 
+Broadcast Address: 181.137.191.254 
+
