@@ -13,7 +13,7 @@
 #3. convert both IP and subnet mask to binary
 #4. figure out network address based on binary
 #5. find out the range of usable IPs range and broadcast address
-#This is a test
+#This is a test this is another test
 def subnet_mask(ip: str):
     ip_split = ip.split(" ")
 
