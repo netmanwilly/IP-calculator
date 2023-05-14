@@ -133,9 +133,9 @@ def to_dotted_decimal(number: str):
 
 
 if __name__ == "__main__":
-    #subnet = print(convert_to_binary("192.168.1.0 /24"))
-    #subnet = print(convert_to_binary("192.168.1.0 /24"))
-    #subnet = print(convert_to_binary("192.168.1.0 /25"))
-    #subnet = print(convert_to_binary("192.168.1.0 /26"))
-    #subnet = print(convert_to_binary("192.168.1.0 /27"))
     subnet = print(network_address("192.168.1.102 /12"))
+    subnet = print(network_address("192.168.1.62 /16"))
+    subnet = print(network_address("192.168.82 /20"))
+    subnet = print(network_address("192.168.1.13 /26"))
+    subnet = print(network_address("192.168.1.2 /17"))
+    subnet = print(network_address("192.168.1.37 /8"))
