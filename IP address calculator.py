@@ -202,14 +202,18 @@ def to_dotted_decimal(number: str):
 
 
 def main():
-    user = str(input("Please type in an IP address and Subnet Mask: "))
-    final_print(user)
+    while False:
+        user = str(input("Please type in an IP address and Subnet Mask: "))
+    else:
+        user = [("192.168.1.102 /12"),
+         ("192.168.1.62 /16"),
+         ("192.168.1.82 /20"),
+         ("192.168.1.65 /26"),
+         ("192.168.1.2 /17"),
+         ("192.168.1.37 /8")]
+        
+    for x in user:
+        final_print(x)
 
 if __name__ == "__main__":
-    #subnet = print(final_print("192.168.1.102 /12"))
-    #subnet = print(final_print("192.168.1.62 /16"))
-    #subnet = print(final_print("192.168.1.82 /20"))
-    #subnet = print(final_print("192.168.1.65 /26"))
-    #subnet = print(final_print("192.168.1.2 /17"))
-    #subnet = print(final_print("192.168.1.37 /8"))
     main()
