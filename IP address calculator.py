@@ -8,12 +8,12 @@
 #notes
 #need to seperate functions a little more so that testing can be done in a more lego-like fashion
 #steps for code
-#1. divide IP and subnet mask
-#2. Check if subnet is correct in either CIDR notation or dotted decimal
-#3. convert both IP and subnet mask to binary
-#4. figure out network address based on binary
-#5. find out the range of usable IPs range and broadcast address
-#This is a test this is another test why isnt this stuff working i want to change the master
+#   1. divide IP and subnet mask
+#   2. Check if subnet is correct in either CIDR notation or dotted decimal
+#   3. convert both IP and subnet mask to binary
+#   4. figure out network address based on binary
+#   5. find out the range of usable IPs range and broadcast address
+#   6. Convert and store information back into a file
 def subnet_mask(ip: str):
     ip_split = ip.split(" ")
 
@@ -81,8 +81,8 @@ def network_address(ip: str):
     subnet = binary[1]
     network_add = []
     network_add_converted = []
-    print(ip)
-    print(subnet)
+    #print(ip)
+    #print(subnet)
     #compares each digit in binary list to calculate network address
     for i in range(4):
         network = ""
@@ -94,13 +94,80 @@ def network_address(ip: str):
             
         network_add.append(network)
 
-    #converts binary back to dotted decimal
-    for x in network_add:
-        network_add_converted.append(str(to_dotted_decimal(x)))
-   
-    print(network_add)
 
-    return ((".".join(network_add_converted)), cidr_notation(".".join(subnet)))
+    #print(network_add)
+
+    return (network_add, subnet)
+
+def ip_range(ip: str):
+    ip = network_address(ip)
+    #lists of addresses in binary notation
+    network = ip[0]
+    subnet = ip[1]
+    broadcast = []
+    
+    #calculate broadcast address using binary 
+    for i in range(4):
+        broadcast_octet = ""
+        for x in range(8):
+            if subnet[i][x] == "1":
+                broadcast_octet += network[i][x]
+            elif subnet[i][x] == "0":
+                broadcast_octet += "1"
+        
+        broadcast.append(broadcast_octet)
+
+    #new list to store dotted decimal notation
+    converted = []
+    first = []
+    last = []
+    broadcast_address = []
+    #loops to convert binary back to decimal dotted notation
+    for x in network:
+        converted.append(to_dotted_decimal(x))
+    for x in network:
+        first.append(to_dotted_decimal(x))
+    for x in broadcast:
+        last.append(to_dotted_decimal(x)) 
+    for x in broadcast:
+        broadcast_address.append(to_dotted_decimal(x))
+    #add one to network address to get first usable
+    first[-1] += 1
+    #subtract one from broadcast to get last usbale
+    last[-1] -= 1
+
+    return (converted, first, last, broadcast_address, cidr_notation(".".join(subnet)))
+
+def final_print(ip: str):
+    ip_information = ip_range(ip)
+    #seperate each list into a unique list
+    network = ip_information[0]
+    first_usuable = ip_information[1]
+    last_usable = ip_information[2]
+    broadcast = ip_information[3]
+    cidr = [ip_information[4]]
+    #converts list into strings
+    network_address = [str(x) for x in network]
+    first_usable_address = [str(x) for x in first_usuable]
+    last_usable_address = [str(x) for x in last_usable]
+    broadcast_address = [str(x) for x in broadcast]
+
+    #combines list into ip address
+    network_address_result = ".".join(network_address)
+    first_usable_result = ".".join(first_usable_address)
+    last_usable_result = ".".join(last_usable_address)
+    broadcast_address = ".".join(last_usable_address)
+
+    with open("Result", "a") as result:
+        result.write("Results: \n")
+        result.write(f"Network Address: {network_address_result} {cidr} \n")
+        result.write(f"First Usable Address: {first_usable_result} \n")
+        result.write(f"Last Usable Address: {last_usable_result} \n")
+        result.write(f"Broadcast Address: {broadcast_address} \n")
+        result.write(f"\n")
+    
+    print("Results store in file.")
+
 
 def cidr_notation(subnet_mask: str):
     subnet = subnet_mask.count("1")
@@ -119,6 +186,7 @@ def to_binary(number: int):
         i += 1
     if len(conversion) < 8:
         conversion += "0" * (8 - len(conversion))
+        
     
     return conversion
 
@@ -132,10 +200,15 @@ def to_dotted_decimal(number: str):
     return conversion
 
 
+def main():
+    user = str(input("Please type in an IP address and Subnet Mask: "))
+    final_print(user)
+
 if __name__ == "__main__":
-    subnet = print(network_address("192.168.1.102 /12"))
-    subnet = print(network_address("192.168.1.62 /16"))
-    subnet = print(network_address("192.168.82 /20"))
-    subnet = print(network_address("192.168.1.13 /26"))
-    subnet = print(network_address("192.168.1.2 /17"))
-    subnet = print(network_address("192.168.1.37 /8"))
+    #subnet = print(final_print("192.168.1.102 /12"))
+    #subnet = print(final_print("192.168.1.62 /16"))
+    #subnet = print(final_print("192.168.1.82 /20"))
+    #subnet = print(final_print("192.168.1.65 /26"))
+    #subnet = print(final_print("192.168.1.2 /17"))
+    #subnet = print(final_print("192.168.1.37 /8"))
+    main()
